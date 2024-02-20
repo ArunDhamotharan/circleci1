@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+
+jobs:
+  job1:
+    docker:
+      - image: circleci/ruby:3.0.0
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: ruby odd_even.rb
+
+  job2:
+    docker:
+      - image: circleci/ruby:3.0.0
+    steps:
+      - checkout
+      - run:
+          name: Run additional steps for branch2
+          command: echo "Running additional steps for branch2"
+
+workflows:
+  version: 2
+  flow1:
+    jobs:
+      - job1
+      - job2:
+          filters:
+            branches:
+              only: branch2
