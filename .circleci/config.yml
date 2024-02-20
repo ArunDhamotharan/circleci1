@@ -44,4 +44,6 @@ workflows:
       - job3:
          filters:
             branches:
-              only: branch2
+              only: branch3
+            pull_requests:
+              types: [opened]  
